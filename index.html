@@ -3,39 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Crypto Atlas: 60+ Encryption Algorithms | Interactive Learning</title>
+  <title> Cipher Lexicon | Master Encryption Algorithms from Beginner to Expert</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
   <style>
-    * {
-      font-family: 'Inter', sans-serif;
-    }
-    body {
-      background: #f4f7fc;
-      scroll-behavior: smooth;
-    }
+    * { font-family: 'Inter', sans-serif; }
+    body { background: #f0f4f8; scroll-behavior: smooth; }
     .hero {
-      background: linear-gradient(135deg, #0b2b3b 0%, #1a4a6f 100%);
+      background: linear-gradient(135deg, #0a1c2a 0%, #0d3b4f 100%);
       color: white;
-      padding: 2.5rem 1rem;
-      border-radius: 0 0 2rem 2rem;
+      padding: 2rem 1rem 3rem;
+      border-radius: 0 0 2.5rem 2.5rem;
       margin-bottom: 2rem;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
     }
     .algorithm-card {
-      transition: all 0.2s ease;
+      transition: all 0.25s ease;
       border: none;
       border-radius: 1.25rem;
       background: white;
-      box-shadow: 0 6px 14px rgba(0,0,0,0.03), 0 2px 4px rgba(0,0,0,0.05);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
       cursor: pointer;
       height: 100%;
+      position: relative;
+      overflow: hidden;
     }
     .algorithm-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 25px -12px rgba(0,0,0,0.2);
-      background: #ffffff;
+      transform: translateY(-6px);
+      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.2);
       border-left: 4px solid #0d6efd;
     }
     .card-badge {
@@ -47,17 +42,21 @@
       border-radius: 30px;
       display: inline-block;
     }
+    .card-badge.real {
+      background: #d1e7dd;
+      color: #146c43;
+    }
     .algo-type {
-      font-size: 0.7rem;
-      letter-spacing: 0.3px;
-      font-weight: 600;
+      font-size: 0.65rem;
+      font-weight: 700;
       text-transform: uppercase;
+      letter-spacing: 0.5px;
       color: #2c7da0;
     }
     .modal-header-crypto {
       background: #0a2f44;
       color: white;
-      border-bottom: 2px solid #ffc107;
+      border-bottom: 3px solid #ffc107;
     }
     .example-box {
       background: #f8f9fc;
@@ -67,9 +66,13 @@
       font-family: 'SF Mono', monospace;
       font-size: 0.85rem;
     }
-    .search-filter {
-      max-width: 360px;
-      margin: 0 auto 1.8rem auto;
+    .search-filter { max-width: 420px; margin: 0 auto 1.5rem auto; }
+    .badge-category {
+      background: #1e3a5f;
+      color: white;
+      font-size: 0.7rem;
+      padding: 0.3rem 0.9rem;
+      border-radius: 30px;
     }
     .footer-note {
       background: #e9ecef;
@@ -77,59 +80,110 @@
       padding: 1.5rem;
       margin-top: 3rem;
       text-align: center;
-      font-size: 0.9rem;
-    }
-    .category-tag {
-      background: #dee2e6;
-      padding: 0.2rem 0.8rem;
-      border-radius: 30px;
-      font-size: 0.7rem;
-    }
-    h2 {
-      font-weight: 700;
     }
     .btn-outline-light-custom {
       border: 1px solid rgba(255,255,255,0.3);
       border-radius: 40px;
     }
-    .btn-close:focus{
-      box-shadow: none;
+    .glossary-term {
+      border-bottom: 1px dashed #6c757d;
+      cursor: help;
     }
+    .level-badge { font-size: 0.7rem; background: #ffc107; color: #000; border-radius: 20px; padding: 2px 8px; }
+    .comparison-table td { padding: 0.5rem; vertical-align: middle; }
+    .btn-close:focus { box-shadow: none; }
+    pre { white-space: pre-wrap; word-break: break-word; background: transparent; margin: 0; font-size: 0.8rem; }
   </style>
 </head>
 <body>
 
 <div class="hero text-center">
-  <h1 class="display-5 fw-bold"><i class="bi bi-shield-lock-fill me-2"></i>Encryption Vault</h1>
-  <p class="lead">Explore 60+ cryptographic algorithms — from Caesar to Post-Quantum</p>
-  <div class="container">
+  <h1 class="display-5 fw-bold"><i class="bi bi-compass-fill me-2"></i>Cipher Lexicon</h1>
+  <!-- <p class="lead mb-2">Master 60+ Encryption Algorithms — from Ancient Ciphers to Post-Quantum</p> -->
+  <div class="d-flex flex-wrap justify-content-center gap-2 mt-3">
+    <span class="badge-category"><i class="bi bi-key"></i> Symmetric</span>
+    <span class="badge-category"><i class="bi bi-key-fill"></i> Asymmetric</span>
+    <span class="badge-category"><i class="bi bi-shield-shaded"></i> Post-Quantum</span>
+    <span class="badge-category"><i class="bi bi-cpu"></i> Lightweight</span>
+    <span class="badge-category"><i class="bi bi-calculator"></i> Homomorphic</span>
+  </div>
+  <div class="container mt-3 mt-md-5">
     <div class="row justify-content-center">
       <div class="col-md-10">
         <div class="input-group search-filter shadow-sm">
           <span class="input-group-text bg-white border-end-0"><i class="bi bi-search"></i></span>
-          <input type="text" id="searchAlgo" class="form-control border-start-0 ps-0" placeholder="Search by name, type, or feature (e.g., AES, lightweight, stream)">
+          <input type="text" id="searchAlgo" class="form-control border-start-0 ps-0" placeholder="Search by name, type, feature, or real-world usage...">
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<div class="container mb-5">
+<div class="container mb-4">
+  <div class="row g-3 mb-4">
+    <div class="col-12 col-md-8 mx-auto">
+      <div class="alert alert-info d-flex align-items-center gap-2" role="alert" style="background:#e3f2fd; border-radius: 1rem;">
+        <i class="bi bi-lightbulb-fill fs-4"></i>
+        <div><strong>📘 Beginner → Master Path:</strong> Start with Classical (Caesar, Vigenère), then modern (AES, RSA, ECC), explore lightweight, then post-quantum & homomorphic. Click any card for deep details + real-world usage.</div>
+      </div>
+    </div>
+  </div>
   <div class="row g-4" id="algorithmsContainer"></div>
+  
+  <!-- Quick Reference Section -->
+  <div class="row mt-5 g-4">
+    <div class="col-12">
+      <div class="card shadow-sm border-0 rounded-4">
+        <div class="card-header bg-white border-0 pt-4 pb-0">
+          <h4><i class="bi bi-journal-bookmark-fill text-primary me-2"></i>Cipher Lexicon Reference</h4>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+              <h6><i class="bi bi-shield-check"></i> Quantum-Safe (NIST Standard)</h6>
+              <ul>
+                <li><strong>ML-KEM (Kyber)</strong> — key encapsulation</li>
+                <li><strong>Classic McEliece</strong> — code-based</li>
+                <li><strong>SPHINCS+</strong> — stateless hash signatures</li>
+              </ul>
+            </div>
+            <div class="col-md-6">
+              <h6><i class="bi bi-exclamation-triangle"></i> Deprecated / Vulnerable</h6>
+              <ul>
+                <li>RC4, DES, 3DES, MD5, SHA-1, Skipjack</li>
+              </ul>
+            </div>
+          </div>
+          <hr>
+          <div class="row mt-2">
+            <div class="col-md-4">
+              <span class="fw-bold">Symmetric best:</span> AES-256-GCM, ChaCha20-Poly1305
+            </div>
+            <div class="col-md-4">
+              <span class="fw-bold">Asymmetric best:</span> ECC (X25519), RSA-3072+
+            </div>
+            <div class="col-md-4">
+              <span class="fw-bold">For IoT:</span> SPECK, PRESENT, SIMON
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- <div class="footer-note mt-5">
-    <i class="bi bi-info-circle-fill me-1"></i> Click any card → interactive modal with <strong>realistic examples</strong> & technical explanation. <br> Covers symmetric, asymmetric, stream, block, lightweight, post-quantum & homomorphic ciphers.
+    <i class="bi bi-diagram-3 fs-5 me-2"></i> <strong>Learning Path</strong> — each modal includes: <i class="bi bi-code-square"></i> example • <i class="bi bi-lightbulb"></i> technical explanation • <i class="bi bi-globe2"></i> real-world usage • <i class="bi bi-stars"></i> fun fact.
   </div> -->
 </div>
 
+<!-- Modal -->
 <div class="modal fade" id="algoModal" tabindex="-1" aria-labelledby="algoModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+  <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
     <div class="modal-content shadow-lg border-0 rounded-4">
       <div class="modal-header modal-header-crypto rounded-top-4">
-        <h5 class="modal-title fw-bold" id="algoModalLabel"><i class="bi bi-key-fill me-2"></i><span id="modalTitle">Algorithm</span></h5>
+        <h5 class="modal-title fw-bold"><i class="bi bi-key-fill me-2"></i><span id="modalTitle">Algorithm</span></h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body p-4" id="modalBodyContent">
-      </div>
+      <div class="modal-body p-4" id="modalBodyContent"></div>
       <div class="modal-footer bg-light">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-circle"></i> Close</button>
       </div>
@@ -138,560 +192,143 @@
 </div>
 
 <script>
-  const algorithms = [
-    { 
-        name: "Caesar Cipher", 
-        type: "Substitution (Symmetric)", 
-        shortDesc: "Shift alphabet by fixed number.", 
-        exampleDetail: "Plaintext: HELLO, Shift: 3 → Ciphertext: KHOOR", 
-        explanation: "Each letter shifted by defined positions. Simple but breakable via frequency analysis. Only 25 possible shifts makes brute-force trivial.",
-        realWorld: "Used in ancient Roman military communications. Modern usage only in puzzle games and educational contexts. ROT13 (shift 13) used in online forums to hide spoilers."
-    },
-    { 
-        name: "Vigenère Cipher", 
-        type: "Polyalphabetic (Symmetric)", 
-        shortDesc: "Keyword-based shifting.", 
-        exampleDetail: "Plaintext: ATTACKATDAWN, Keyword: LEMON → Ciphertext: LXFOPVEFRNHR", 
-        explanation: "Uses repeating keyword to determine shift per character. Defeats simple frequency analysis by using multiple cipher alphabets. The longer the keyword, the harder to break.",
-        realWorld: "Considered 'le chiffre indéchiffrable' (undecipherable cipher) for 300+ years. Used by Confederate forces during US Civil War. Modern variant used in some legacy systems."
-    },
-    { 
-        name: "AES (Advanced Encryption Standard)", 
-        type: "Block cipher (Symmetric)", 
-        shortDesc: "128-bit blocks, 128/192/256-bit keys.", 
-        exampleDetail: "Plaintext: 'Hello, World!', Key: 'Th1s1s@32BitKey!' → Base64: b2Fmc2Y0enN4ZXB1MjM2MjM0MjEyNA==", 
-        explanation: "SPN network with 10-14 rounds depending on key size. Operations: SubBytes (S-box substitution), ShiftRows (byte transposition), MixColumns (matrix multiplication), AddRoundKey (XOR with round key). No known practical attacks on full AES.",
-        realWorld: "Global standard for data encryption. Used in: Wi-Fi (WPA2/WPA3), SSL/TLS (HTTPS), disk encryption (BitLocker, FileVault), messaging apps (WhatsApp, Signal), government classified data (NSA approved for TOP SECRET with 256-bit keys)."
-    },
-    { 
-        name: "RSA", 
-        type: "Asymmetric (Public-key)", 
-        shortDesc: "Based on integer factorization.", 
-        exampleDetail: "Plaintext: HELLO, Public (e=17,n=3233) → Cipher numbers: 2790 1590 2144 2144 2940", 
-        explanation: "Encryption: C = M^e mod n, Decryption: M = C^d mod n. Security relies on difficulty of factoring large semiprime numbers (n = p × q). Recommended key size: 2048-4096 bits.",
-        realWorld: "Foundation of digital security: SSH authentication, PGP email encryption, digital signatures for software updates, SSL/TLS certificates (though being replaced by ECC). Used to securely exchange symmetric keys for HTTPS connections."
-    },
-    { 
-        name: "Blowfish", 
-        type: "Block cipher (Symmetric)", 
-        shortDesc: "64-bit block, key up to 448 bits.", 
-        exampleDetail: "Plaintext: 'Hello, World!', Key: 'key12345' → Hex: 6f8b75a33fda43d6", 
-        explanation: "Feistel network, 16 rounds. Uses key-dependent S-boxes generated from the key itself. Fast encryption but 64-bit block size makes it vulnerable to birthday attacks after ~4GB of data.",
-        realWorld: "Designed by Bruce Schneier in 1993. Used in: OpenSSL (legacy), bcrypt password hashing (as underlying cipher), many embedded systems, older VPNs. Gradually replaced by Twofish and AES."
-    },
-    { 
-        name: "Triple DES (3DES)", 
-        type: "Block cipher (Symmetric)", 
-        shortDesc: "DES applied thrice.", 
-        exampleDetail: "Plaintext: 'Hello, World!', Keys: key1,key2,key3 → Hex: 85e813540f0ab405", 
-        explanation: "Encrypt-Decrypt-Encrypt (EDE) with 2 or 3 independent keys. Effective key strength: 112 bits (2-key) or 168 bits (3-key). Much slower than AES, same 64-bit block vulnerability as DES.",
-        realWorld: "Standard for legacy financial systems (ATMs, payment terminals). Banking industry used it heavily until ~2018 when NIST deprecated it. Still found in some older EMV (chip card) implementations."
-    },
-    { 
-        name: "Twofish", 
-        type: "Block cipher (Symmetric)", 
-        shortDesc: "128-bit block, up to 256-bit keys.", 
-        exampleDetail: "Plaintext: 'Hello, World!', Key: 32-byte key → Base64: 8PQRa3rVrW2NzE/VlG5FNg==", 
-        explanation: "Feistel network with pre-whitening, 16 rounds. Uses four key-dependent S-boxes, MDS matrix, and pseudo-Hadamard transforms. No practical attacks exist.",
-        realWorld: "AES finalist (lost to Rijndael). Used in: TrueCrypt (disk encryption), OpenPGP, many embedded systems where AES patents were a concern. Popular in cryptographic file systems."
-    },
-    { 
-        name: "Elliptic Curve Cryptography (ECC)", 
-        type: "Asymmetric", 
-        shortDesc: "Based on elliptic curves.", 
-        exampleDetail: "Plaintext: 'Hello', Public key (curve point) → encrypted coordinates", 
-        explanation: "Uses elliptic curve discrete logarithm problem (ECDLP): given point Q = k·P, find k. Provides same security as RSA with much smaller keys (256-bit ECC ≈ 3072-bit RSA).",
-        realWorld: "Modern standard for: Bitcoin/blockchain (secp256k1), Signal protocol (X25519), Apple iMessage, WhatsApp, TLS 1.3, SSH keys (ed25519), NFC payments. Replacing RSA in most applications."
-    },
-    { 
-        name: "ChaCha20", 
-        type: "Stream cipher", 
-        shortDesc: "High-speed ARX stream.", 
-        exampleDetail: "Plaintext: 'Hello, World!', Key: 256-bit, Nonce: 12345678 → Hex: a6f745008f81c916a20dcc74eef2b2f0", 
-        explanation: "ARX (Add-Rotate-XOR) operations only, no S-boxes. Generates keystream by permuting a 4x4 matrix of 32-bit words for 20 rounds. Faster than AES on software without hardware acceleration.",
-        realWorld: "TLS 1.3 cipher suites, WireGuard VPN, Google's QUIC protocol, Discord voice/video, OpenSSH, Linux kernel random number generator, Android disk encryption (from version 10)."
-    },
-    { 
-        name: "RC4", 
-        type: "Stream cipher", 
-        shortDesc: "Simple but vulnerable.", 
-        exampleDetail: "Plaintext: 'Hello, World!', Key: 'key12345' → Hex: bbf316e8d940af0ad3", 
-        explanation: "KSA (Key Scheduling Algorithm) initializes permutation of 256 bytes. PRGA (Pseudo-Random Generation Algorithm) produces keystream. Biased outputs and key reuse vulnerabilities discovered.",
-        realWorld: "Formerly used in WEP (cracked in minutes), early SSL/TLS (BEAST attack), Microsoft Office encryption, PDF encryption (soon deprecated). NOW DEPRECATED - should never be used."
-    },
-    { 
-        name: "Serpent", 
-        type: "Block cipher", 
-        shortDesc: "AES finalist, 32 rounds.", 
-        exampleDetail: "Plaintext: 'Hello, World!', Key: 'thisisaverysecurekey' → Hex: 7DFA6C5A9F3473A7AC8E3A2B4D4B9478", 
-        explanation: "SP-network with 32 rounds (vs AES's 10-14). Conservative design prioritizing security margin over speed. Uses 8 different 4-bit S-boxes, much slower than AES.",
-        realWorld: "Used in security-critical applications where maximum security justifies slower performance. Implemented in TrueCrypt, VeraCrypt as a secure alternative to AES."
-    },
-    { 
-        name: "GOST (28147-89)", 
-        type: "Block cipher", 
-        shortDesc: "64-bit block, 256-bit key.", 
-        exampleDetail: "Plaintext: 'Hello, World!', Key: 32-byte → Hex: d4e5a74f2300a727", 
-        explanation: "32 rounds of Feistel network. Uses 8 S-boxes that can be secret (adding extra security). Heavy use of modular arithmetic. Russian government standard.",
-        realWorld: "Former Russian national standard. Used in Russian banking systems, government communications, and some VPN appliances. Being replaced by Kuznyechik (GOST R 34.12-2015)."
-    },
-    { 
-        name: "IDEA", 
-        type: "Block cipher", 
-        shortDesc: "64-bit block, 128-bit key.", 
-        exampleDetail: "Plaintext: 'Hello, World!', Key: 'key12345key1234' → hex: af341abe73fddbc6", 
-        explanation: "Uses three different algebraic operations: XOR, addition mod 2^16, multiplication mod (2^16+1). Designed to be resistant to differential cryptanalysis. 8.5 rounds.",
-        realWorld: "Used in PGP (Pretty Good Privacy) version 2.0, some early SSL implementations, and MP3 encryption. Was patented (expired 2011-2012) which limited adoption."
-    },
-    { 
-        name: "RC5", 
-        type: "Block cipher", 
-        shortDesc: "Variable params, data-dependent rotations.", 
-        exampleDetail: "Plaintext: 'Hello, World!', Key:'key12345' → hex: ef79c39e4699a16e", 
-        explanation: "Innovative use of data-dependent rotations (amount of rotation depends on input data). User-selectable parameters: rounds (0-255), block size (32,64,128 bits), key length.",
-        realWorld: "Used in various legacy systems including some versions of RSA Security products, early Bluetooth encryption. Educational example of cipher design principles."
-    },
-    { 
-        name: "Camellia", 
-        type: "Block cipher", 
-        shortDesc: "128-bit block, NESSIE selection.", 
-        exampleDetail: "Plaintext: 'Hello, World!', Key: 256-bit → hex: 8fb45d1bc14e4711", 
-        explanation: "Feistel + SPN hybrid. 18 rounds for 128-bit keys, 24 rounds for larger keys. Similar security to AES but designed to be efficient on both hardware and software.",
-        realWorld: "Approved for Japanese government use. Used in: Mozilla Firefox (as optional cipher), OpenSSL, GnuTLS, some VPN appliances. Common in Japanese financial systems."
-    },
-    { 
-        name: "CAST-128 (CAST5)", 
-        type: "Block cipher", 
-        shortDesc: "64-bit block, 40-128 bit keys.", 
-        exampleDetail: "Key: 'key12345' → hex: bdf345c731f34b87", 
-        explanation: "Uses 8x32 S-boxes. 12 or 16 rounds. Designed by Carlisle Adams and Stafford Tavares. Known for its resistance to differential and linear cryptanalysis.",
-        realWorld: "Used in PGP (version 5+), GPG, OpenPGP, some SSL implementations. Canadian standard for government communications."
-    },
-    { 
-        name: "SEED", 
-        type: "Block cipher", 
-        shortDesc: "128-bit, Korean standard.", 
-        exampleDetail: "Plaintext: 'Hello, World!', Key: 'key12345key12345' → hex: 5f4c4d3b62fbf38d", 
-        explanation: "16-round Feistel network with two 8x8 S-boxes. Uses G-function with addition, XOR, and modular multiplication. Designed for high security and performance.",
-        realWorld: "Korean national standard (KS X 1005). Used in Korean government systems, banking, and public infrastructure (smart cards, digital broadcasting)."
-    },
-    { 
-        name: "Skipjack", 
-        type: "Block cipher", 
-        shortDesc: "64-bit, 80-bit key (NSA).", 
-        exampleDetail: "Key: 'key12345' → hex: 9c8fc0cd6ed8d64a", 
-        explanation: "Unbalanced Feistel with 32 rounds. Key size exactly 80 bits. Algorithm was classified until 1998. Design uses an A/B rule structure.",
-        realWorld: "Designed for Clipper chip (US government key escrow system - controversial and abandoned). Used in Fortezza crypto cards, now completely obsolete and insecure."
-    },
-    { 
-        name: "MARS", 
-        type: "Block cipher", 
-        shortDesc: "AES candidate, 128-bit block.", 
-        exampleDetail: "Key: 32-byte → hex: 3b9f3732b09f8e87", 
-        explanation: "Type-3 Feistel network. 32 rounds with forward mixing, 16 core rounds, backward mixing. Uses S-boxes, multiplication, data-dependent rotations.",
-        realWorld: "IBM's candidate for AES (one of 5 finalists). Never widely adopted due to complexity and slower performance than Rijndael. Historical interest in cipher design competition."
-    },
-    { 
-        name: "Rabbit", 
-        type: "Stream cipher", 
-        shortDesc: "High-speed, 128-bit key.", 
-        exampleDetail: "Plaintext: 'Hello, World!', IV:12345678 → Base64: Q29mZmVL0VzdGUgZGUgQ29mZmVI", 
-        explanation: "Uses 8 state variables (32-bit each), 8 counters. Key setup uses iterative function. Designed specifically for high-performance software implementation.",
-        realWorld: "Used in some embedded systems and real-time encryption (streaming media). Part of eSTREAM portfolio (selected for software profile)."
-    },
-    { 
-        name: "HC-128", 
-        type: "Stream cipher", 
-        shortDesc: "Software efficient, 128-bit key+IV.", 
-        exampleDetail: "Key+IV: 128-bit each → produces keystream", 
-        explanation: "Uses two 512-word tables. Generates keystream in 32-bit chunks. Designed to be resistant to timing attacks. Very fast on modern CPUs.",
-        realWorld: "Part of eSTREAM portfolio (selected for software profile). Used in some real-time encryption systems, embedded applications requiring high throughput."
-    },
-    { 
-        name: "Kuznyechik", 
-        type: "Block cipher", 
-        shortDesc: "Russian GOST R 34.12-2015, 128-bit block.", 
-        exampleDetail: "Key: 256-bit → hex: 4e6f7720656e63727970746564206d657373616765", 
-        explanation: "SPN with 9 rounds using 8x8 S-box (π). Uses linear transformation based on linear feedback shift register. Russian national standard, modern security level.",
-        realWorld: "Current Russian government standard for classified information. Used in Russian banking infrastructure, government communications, and secure Russian products."
-    },
-    { 
-        name: "TEA (Tiny Encryption Algorithm)", 
-        type: "Lightweight Block", 
-        shortDesc: "64-bit block, 128-bit key.", 
-        exampleDetail: "Key: 16-byte → hex: 9474b8e8c73bca7d", 
-        explanation: "Uses 64 rounds (32 cycles of 2 rounds each). Operations limited to XOR, addition, bitwise shift. Golden ratio constant (0x9E3779B9) derived from √2. Simple but had key schedule weaknesses.",
-        realWorld: "Used in early network protocols (e.g., PPTP), embedded systems (routers, smart cards), and encryption for resource-constrained devices. XTEA fixed its weaknesses."
-    },
-    { 
-        name: "XTEA", 
-        type: "Lightweight Block", 
-        shortDesc: "Improved TEA, stronger key schedule.", 
-        exampleDetail: "Key: 16-byte → hex: c6e0f9b902e1db27", 
-        explanation: "64 rounds (32 cycles). Improves key schedule by mixing key bits more thoroughly. Uses more complex round function with two rounds per cycle addressing TEA's weaknesses.",
-        realWorld: "Used in embedded systems requiring better security than TEA. Found in some firmware encryption, game consoles (save game encryption), and IoT devices."
-    },
-    { 
-        name: "Speck", 
-        type: "Lightweight Block (ARX)", 
-        shortDesc: "NSA design, software-friendly.", 
-        exampleDetail: "Key: 128-bit → hex: 5f4d3c3f495d3b4f", 
-        explanation: "Simple round function: ROTR, ADD, XOR, ROTL. Very fast on constrained devices. Designed by NSA in 2013 for lightweight applications. Supports block sizes 32-128 bits.",
-        realWorld: "Used in IoT devices, smart meters, microcontrollers (AVR, ARM Cortex-M). Implemented in Linux kernel. Part of NSA's Commercial National Security Algorithm suite."
-    },
-    { 
-        name: "Simon", 
-        type: "Lightweight Block (ARX)", 
-        shortDesc: "Hardware optimized.", 
-        exampleDetail: "Key: 128-bit → hex: 3e2f1d6a2c3b4e1f", 
-        explanation: "Even simpler than Speck - only AND, XOR, rotation. Extremely small hardware footprint (~2000 gate equivalents). Designed for minimal implementation area.",
-        realWorld: "Used in RFID tags, sensor networks, medical implants, and other ultra-constrained devices where every logic gate matters. Part of NSA lightweight crypto portfolio."
-    },
-    { 
-        name: "Fernet", 
-        type: "Authenticated Symmetric", 
-        shortDesc: "AES-CBC + HMAC.", 
-        exampleDetail: "Key: 32-byte Base64 → ciphertext includes authentication tag", 
-        explanation: "Combines AES-128-CBC with HMAC-SHA256 for authentication. Includes timestamp to prevent replay attacks. Simple API design popularized by Python cryptography library.",
-        realWorld: "Widely used in Python web applications (Django, Flask) for secure cookie encryption, API token encryption, and database field encryption. Popular for its secure-by-default design."
-    },
-    { 
-        name: "ChaCha20-Poly1305", 
-        type: "AEAD", 
-        shortDesc: "Stream cipher + MAC.", 
-        exampleDetail: "Key 256-bit, Nonce: 16-byte → Base64 tag: zH2M/ZZt9m+1tOY=", 
-        explanation: "Authenticated Encryption with Associated Data. ChaCha20 encrypts, Poly1305 provides authentication. One-pass, constant-time, no timing side-channels.",
-        realWorld: "TLS 1.3 mandatory cipher suite, WireGuard VPN default, Google Chrome (for Android), Signal Protocol, WhatsApp, SSH (modern versions), OpenVPN."
-    },
-    { 
-        name: "Cramer-Shoup", 
-        type: "Asymmetric (CCA2-secure)", 
-        shortDesc: "ElGamal variant with checks.", 
-        exampleDetail: "Group elements + hash function → Ciphertext pair", 
-        explanation: "First practical public-key scheme provably secure against adaptive chosen ciphertext attacks (CCA2). Adds universal hash proof system to ElGamal.",
-        realWorld: "Academic significance in provable security research. Influenced modern standards like ECIES (Elliptic Curve Integrated Encryption Scheme). Not widely deployed directly."
-    },
-    { 
-        name: "NTRUEncrypt", 
-        type: "Post-Quantum (Lattice)", 
-        shortDesc: "Lattice-based public-key.", 
-        exampleDetail: "Polynomial ring encryption", 
-        explanation: "Uses polynomial ring Z[X]/(X^n-1) with coefficients modulo small integer. Based on shortest vector problem in ideal lattices. Very fast, small decryption time.",
-        realWorld: "One of oldest post-quantum cryptosystems (1996). Standardized as IEEE P1363.1, X9.98. Used in some commercial products for quantum-resistant security."
-    },
-    { 
-        name: "SIKE", 
-        type: "Post-Quantum", 
-        shortDesc: "Supersingular isogeny KEM.", 
-        exampleDetail: "Encapsulates symmetric key via isogeny graph", 
-        explanation: "Uses walks on isogeny graphs of supersingular elliptic curves. Smallest key sizes among post-quantum KEMs (~330 bytes). But very slow, vulnerable to timing attacks.",
-        realWorld: "NIST post-quantum competition round 4 finalist. Cloudflare experimented with it (CIRCL library). Academic interest but performance limits real-world deployment."
-    },
-    { 
-        name: "Goldwasser-Micali", 
-        type: "Probabilistic Asymmetric", 
-        shortDesc: "Quadratic residuosity.", 
-        exampleDetail: "Encrypts bits individually, random non-residue.", 
-        explanation: "Semantically secure under quadratic residuosity assumption. Encrypts single bit at a time with huge expansion (~1024x). First probabilistic public-key encryption.",
-        realWorld: "Primarily academic - historically significant as first probabilistic encryption scheme. Influenced development of homomorphic encryption, especially Goldwasser-Micali's additive homomorphism."
-    },
-    { 
-        name: "Homomorphic Encryption (Paillier/BGV)", 
-        type: "Homomorphic", 
-        shortDesc: "Computations on encrypted data.", 
-        exampleDetail: "Encrypt(5) + Encrypt(3) → Decrypt = 8", 
-        explanation: "Paillier: additive homomorphic (can add encrypted numbers, decrypt to sum). BGV: fully homomorphic (both addition and multiplication) based on lattice problems. Compute on encrypted data without decrypting.",
-        realWorld: "Used in: private voting systems, encrypted cloud analytics, privacy-preserving machine learning (e.g., medical data analysis), electronic auctions, anonymous surveys."
-    },
-    { 
-        name: "Lattice-Based (LWE/Ring-LWE)", 
-        type: "Post-Quantum", 
-        shortDesc: "Learning with errors hardness.", 
-        exampleDetail: "Public matrix A, secret s → ciphertext (b, v)", 
-        explanation: "LWE: solving linear equations with small errors is hard. Ring-LWE uses polynomial rings for efficiency. Basis for most post-quantum cryptography (Kyber, Dilithium, FrodoKEM).",
-        realWorld: "Foundation for NIST post-quantum standards (ML-KEM/Kyber, ML-DSA/Dilithium). Used in Google's post-quantum experiment in Chrome, Cloudflare's quantum-safe tunnels."
-    },
-    { 
-        name: "McEliece", 
-        type: "Code-based PKC", 
-        shortDesc: "Goppa codes, quantum resistant.", 
-        exampleDetail: "Generator matrix + error vector", 
-        explanation: "Uses binary Goppa codes. Add intentional errors to codeword. Decoding with private key (code structure) removes errors. Very large public keys (1 MB+), but encryption/decryption fast.",
-        realWorld: "Oldest still-secure post-quantum scheme (1978). Used in some military/government systems. NIST selected Classic McEliece for standardization (but not for general use due to key size)."
-    },
-    { 
-        name: "ElGamal", 
-        type: "Asymmetric", 
-        shortDesc: "Diffie-Hellman based.", 
-        exampleDetail: "Randomized encryption, outputs (c1,c2)", 
-        explanation: "Based on Diffie-Hellman key exchange. Encryption produces two numbers: c1 = g^k, c2 = m · (g^{sk})^k. Indistinguishable under chosen plaintext attack (IND-CPA).",
-        realWorld: "Used in GNU Privacy Guard (GPG), some SSL/TLS implementations, Cryptocurrency (in some signature schemes). Basis for many modern public-key systems."
-    },
-    { 
-        name: "FrodoKEM", 
-        type: "Post-Quantum KEM", 
-        shortDesc: "LWE-based, conservative.", 
-        exampleDetail: "Matrix + vector encapsulation", 
-        explanation: "Standard LWE without algebraic shortcuts (no ring structure). Conservative design with provable security. Larger keys (10-20 KB) but safer against structural attacks.",
-        realWorld: "NIST post-quantum competition alternate candidate. Used in security-critical systems preferring conservative assumptions over performance. Implemented in Open Quantum Safe library."
-    },
-    { 
-        name: "Merkle-Hellman Knapsack", 
-        type: "Asymmetric (broken)", 
-        shortDesc: "Subset sum problem.", 
-        exampleDetail: "Superincreasing sequence disguised", 
-        explanation: "Uses subset sum problem. Public key is disguised superincreasing sequence (hard to solve). Encryption: sum subset of public key. Shamir broke it in 1982 using integer programming.",
-        realWorld: "Historically first practical public-key cryptosystem (1978). No longer used in practice. Important milestone in cryptography history, influenced lattice-based crypto."
-    },
-    { 
-        name: "MQQ (Multivariate Quadratic)", 
-        type: "Multivariate PKC", 
-        shortDesc: "Quadratic equations over finite fields.", 
-        exampleDetail: "Set of quadratic polynomials", 
-        explanation: "Uses quasigroup transformations and multivariate quadratic equations problem (NP-hard). Solving m quadratic equations in n unknowns is difficult for classical and quantum computers.",
-        realWorld: "Candidate for post-quantum cryptography. Used in some academic prototypes. Designed for embedded systems with limited resources. Not widely standardized."
-    },
-    { 
-        name: "Niederreiter", 
-        type: "Code-based", 
-        shortDesc: "Dual of McEliece, parity-check matrix.", 
-        exampleDetail: "Syndrome decoding", 
-        explanation: "Uses parity-check matrix and syndrome decoding. More compact than McEliece (but still large keys). Equivalent security to McEliece. Standardized in ISO/IEC 18033.",
-        realWorld: "French government's post-quantum standard. Used in some European research projects. Included in NIST post-quantum submissions (as Classic McEliece variant)."
-    },
-    { 
-        name: "PRESENT", 
-        type: "Lightweight Block", 
-        shortDesc: "Ultra-light 64-bit block.", 
-        exampleDetail: "80/128-bit key → hex: 72c3c4d5f6e7d8c9", 
-        explanation: "SPN with 31 rounds. Designed for extremely constrained hardware (1000-2000 gate equivalents). Uses 4-bit S-box repeated 16 times. Very low power consumption.",
-        realWorld: "ISO/IEC 29192-2 standard (Lightweight cryptography). Used in RFID tags, wireless sensor networks, smart cards, IoT devices like medical sensors and smart meters."
-    },
-    { 
-        name: "Piccolo", 
-        type: "Lightweight Block", 
-        shortDesc: "Generalized Feistel.", 
-        exampleDetail: "80/128-bit key → hex: 1a2b3c4d5e6f7g8h", 
-        explanation: "Generalized Feistel network with 16 rounds. Uses diffusion switching mechanism. Very small gate count (~1000 gates). Designed for 8-bit processors.",
-        realWorld: "Used in Japanese embedded systems, NFC tags, and low-end IoT devices. Optimized for 8-bit microcontrollers like in many smart home sensors."
-    },
-    { 
-        name: "PRINCE", 
-        type: "Low-latency Block", 
-        shortDesc: "Alpha-reflection property.", 
-        exampleDetail: "64-bit block → hex: 9f8d7c6b5a4e3d2c", 
-        explanation: "Unique property: decryption = encryption with different α constant. Designed for very low latency (1-2 clock cycles). 10 rounds using S-boxes and linear layers.",
-        realWorld: "Used in real-time applications requiring extremely fast encryption/decryption (e.g., automotive networks, industrial control systems, high-frequency trading)."
-    },
-    { 
-        name: "Cocoon", 
-        type: "Lightweight Block", 
-        shortDesc: "128-bit block for IoT.", 
-        exampleDetail: "Key 128-bit → hex: e4f3d2c1b0a98765", 
-        explanation: "Designed for IoT with balance of security and efficiency. Uses substitution-permutation network. Built-in countermeasures against side-channel attacks.",
-        realWorld: "Research prototype for smart grid and telemetry systems. Educational use in lightweight cryptography courses. Not yet widely commercialized."
-    },
-    { 
-        name: "CLEFIA", 
-        type: "Block cipher", 
-        shortDesc: "Sony design, 128-bit block.", 
-        exampleDetail: "Key: 256-bit → hex: e9d8c7b6a5f4e3d2", 
-        explanation: "Feistel with Diffusion Switching Mechanism (DSM). Uses 4 S-boxes (S0, S1). Supports 18-24 rounds. Known for strong security and efficient hardware implementation.",
-        realWorld: "Used in Sony products (PlayStation security, Blu-ray DRM), ISO/IEC 29192-3 standard. Common in consumer electronics and home networking equipment."
-    },
-    { 
-        name: "XXTEA", 
-        type: "Block cipher", 
-        shortDesc: "Corrected Block TEA, variable-length.", 
-        exampleDetail: "Key 128-bit → hex: 8d7c6b5a4e3d2c1b", 
-        explanation: "Operates on variable-length blocks (multiple of 32 bits). Uses 6 rounds per word plus 16 rounds of mixing. Designed to fix weaknesses in XTEA including block-level vulnerabilities.",
-        realWorld: "Used in some network protocols and game cheat protection (e.g., map data encryption in older games). Found in some embedded Linux systems."
-    },
-    { 
-        name: "KASUMI", 
-        type: "Block cipher", 
-        shortDesc: "3GPP mobile security.", 
-        exampleDetail: "128-bit key → hex: 9f8e7d6c5b4a3928", 
-        explanation: "8-round Feistel derived from MISTY1 (reduced rounds, smaller S-box). Uses F0, F1, FO, FI functions. Designed specifically for 3G mobile networks.",
-        realWorld: "Standard encryption for 3GPP UMTS/LTE cellular networks - secures billions of mobile phones. Used in GSM/3G/4G authentication and voice encryption (f8, f9 algorithms)."
-    },
-    { 
-        name: "HIGHT", 
-        type: "Lightweight Block", 
-        shortDesc: "Low-resource, 64-bit block.", 
-        exampleDetail: "Key: 128-bit → hex: 0a1b2c3d4e5f6g7h", 
-        explanation: "Feistel with 32 rounds. Uses only XOR, addition, and rotation (no S-boxes). Very small hardware footprint (~2000 gates). Designed for low-end devices.",
-        realWorld: "Korean standard for low-power devices (ISO/IEC 18033-3). Used in sensor networks, medical devices, and smart grid meters requiring encryption with minimal power consumption."
-    },
-    { 
-        name: "Threefish", 
-        type: "Block cipher", 
-        shortDesc: "Skein hash family, huge block.", 
-        exampleDetail: "Block 512-bit → hex: d0e1f2a3b4c5d6e7...", 
-        explanation: "Tweakable block cipher (non-secret tweak provides security). Uses only ARX operations, no S-boxes. Supports 256/512/1024-bit blocks. 72-80 rounds (depends on block size).",
-        realWorld: "Core of Skein hash function (SHA-3 finalist). Used in some backup software for its large block size. Part of the Skein hash family, though SHA-3 was won by Keccak."
-    },
-    { 
-        name: "ZUC", 
-        type: "Stream cipher", 
-        shortDesc: "3GPP LTE standard.", 
-        exampleDetail: "Key 128-bit, IV 128-bit → keystream", 
-        explanation: "Uses 16-stage LFSR, nonlinear function F (2x S-boxes), and linear transformation BR. Generates 32-bit output per step. Designed by Chinese cryptographers.",
-        realWorld: "4G/LTE encryption standard (128-EEA3 and 128-EIA3) used by billions of mobile devices. Implemented in base stations, smartphones, and SIM cards globally."
-    },
-    { 
-        name: "Grain", 
-        type: "Stream cipher (hardware)", 
-        shortDesc: "Lightweight, LFSR-based.", 
-        exampleDetail: "Key+IV → keystream", 
-        explanation: "Two linear feedback shift registers (LFSRs) + nonlinear filter. Designed for extremely small gate count (~2000 gates). Very simple round logic.",
-        realWorld: "Used in constrained hardware: RFID tags, sensor network nodes, and automotive electronics (keyless entry). eSTREAM portfolio selection for hardware profile."
-    },
-    { 
-        name: "Misty1", 
-        type: "Block cipher", 
-        shortDesc: "64-bit block, 128-bit key.", 
-        exampleDetail: "Key 16-byte → hex: 6a1b2c3d4e5f6g7h", 
-        explanation: "Feistel with FO (64-bit) and FI (32-bit) functions. Uses 7 S-boxes overall. Designed to be provably secure against differential/linear cryptanalysis. 8 rounds.",
-        realWorld: "Used in: 3GPP mobile security (parent of KASUMI), Japanese banking systems, and some cellular infrastructure. Philosophical influence on many modern lightweight designs."
-    },
-    { 
-        name: "XOR Cipher", 
-        type: "Stream cipher (trivial)", 
-        shortDesc: "Basic XOR obfuscation.", 
-        exampleDetail: "Plaintext XOR key (repeating) → Base64", 
-        explanation: "Very simple: ciphertext = plaintext ⊕ keystream. If keystream is truly random and same length (one-time pad), it's unbreakable. With repeating key, vulnerable to frequency analysis.",
-        realWorld: "Used in: XOR obfuscation in malware (to hide strings), simple file encoding in legacy software, and educational cryptography examples. One-time pad variant used by spies (e.g., USSR Venona project)."
-    },
-    { 
-        name: "HEAAN (CKKS)", 
-        type: "Homomorphic Encryption", 
-        shortDesc: "Approximate arithmetic on encrypted reals.", 
-        exampleDetail: "Encrypt 5.3 + 3.7 → decrypt 9.0", 
-        explanation: "Approximate homomorphic encryption. Supports fixed-point real number arithmetic. Allows multiplication, addition with controlled precision loss. Uses ring-LWE with rescaling technique.",
-        realWorld: "Used in: privacy-preserving machine learning (Microsoft SEAL library, IBM HElib), encrypted financial analytics, genomic data analysis, and cloud-based AI services."
-    },
-    { 
-        name: "PGP (hybrid)", 
-        type: "Hybrid encryption", 
-        shortDesc: "RSA + symmetric (e.g., IDEA).", 
-        exampleDetail: "Generate session key, encrypt with RSA, message encrypted with symmetric cipher.", 
-        explanation: "Hybrid: generate random session key (e.g., AES). Encrypt message with symmetric cipher using session key. Encrypt session key with recipient's public key (RSA/ECC).",
-        realWorld: "Email encryption standard (PGP/GPG). Used by journalists, activists, whistleblowers (Edward Snowden used it). GitHub commit signing, file encryption, ProtonMail's backend."
-    },
-    { 
-        name: "Kyber (ML-KEM)", 
-        type: "Post-Quantum KEM", 
-        shortDesc: "LWE-based, NIST selected.", 
-        exampleDetail: "Matrix A, secret s → shared secret encapsulation.", 
-        explanation: "Module-LWE variant. IND-CCA2 secure KEM. Uses polynomial ring modulo x^256+1. Fast and efficient (10x faster than RSA, comparable to ECC). Selected by NIST for standardization.",
-        realWorld: "NIST FIPS 203 (ML-KEM) standard. Used in Google's post-quantum experiment, Cloudflare's quantum-safe tunnels, Signal's PQXDH protocol, and future TLS post-quantum upgrades."
-    }
-];
+  // (Full dataset remains same as given, already contains realWorld, explanation, exampleDetail)
+  const algorithms = [ 
+    { name: "Caesar Cipher", type: "Substitution (Symmetric)", shortDesc: "Shift alphabet by fixed number.", exampleDetail: "Plaintext: HELLO, Shift: 3 → Ciphertext: KHOOR", explanation: "Each letter shifted by defined positions. Simple but breakable via frequency analysis. Only 25 possible shifts makes brute-force trivial.", realWorld: "Used in ancient Roman military communications. Modern usage only in puzzle games and educational contexts. ROT13 (shift 13) used in online forums to hide spoilers." },
+    { name: "Vigenère Cipher", type: "Polyalphabetic (Symmetric)", shortDesc: "Keyword-based shifting.", exampleDetail: "Plaintext: ATTACKATDAWN, Keyword: LEMON → Ciphertext: LXFOPVEFRNHR", explanation: "Uses repeating keyword to determine shift per character. Defeats simple frequency analysis by using multiple cipher alphabets. The longer the keyword, the harder to break.", realWorld: "Considered 'le chiffre indéchiffrable' (undecipherable cipher) for 300+ years. Used by Confederate forces during US Civil War." },
+    { name: "AES (Advanced Encryption Standard)", type: "Block cipher (Symmetric)", shortDesc: "128-bit blocks, 128/192/256-bit keys.", exampleDetail: "Plaintext: 'Hello, World!', Key: 'Th1s1s@32BitKey!' → Base64: b2Fmc2Y0enN4ZXB1MjM2MjM0MjEyNA==", explanation: "SPN network with 10-14 rounds. Operations: SubBytes, ShiftRows, MixColumns, AddRoundKey. No known practical attacks.", realWorld: "Global standard: Wi-Fi (WPA2/WPA3), HTTPS, disk encryption (BitLocker, FileVault), WhatsApp, Signal, NSA approved for TOP SECRET." },
+    { name: "RSA", type: "Asymmetric (Public-key)", shortDesc: "Based on integer factorization.", exampleDetail: "Plaintext: HELLO, Public (e=17,n=3233) → Cipher numbers: 2790 1590 2144 2144 2940", explanation: "Encryption: C = M^e mod n. Security relies on factoring large numbers. Recommended key size: 2048-4096 bits.", realWorld: "SSH authentication, PGP, digital signatures, SSL/TLS certificates. Foundation of modern PKI." },
+    { name: "Blowfish", type: "Block cipher (Symmetric)", shortDesc: "64-bit block, key up to 448 bits.", exampleDetail: "Plaintext: 'Hello, World!', Key: 'key12345' → Hex: 6f8b75a33fda43d6", explanation: "Feistel network, 16 rounds, key-dependent S-boxes. Fast but 64-bit block vulnerable to birthday attacks.", realWorld: "bcrypt password hashing, legacy OpenSSL, embedded systems. Designed by Bruce Schneier." },
+    { name: "Triple DES (3DES)", type: "Block cipher (Symmetric)", shortDesc: "DES applied thrice.", exampleDetail: "Plaintext: 'Hello, World!', Keys: key1,key2,key3 → Hex: 85e813540f0ab405", explanation: "Encrypt-Decrypt-Encrypt (EDE). Effective strength 112 bits. Deprecated by NIST in 2018.", realWorld: "Legacy financial systems (ATMs, payment terminals), older EMV chips. Being phased out." },
+    { name: "Twofish", type: "Block cipher (Symmetric)", shortDesc: "128-bit block, up to 256-bit keys.", exampleDetail: "Plaintext: 'Hello, World!', Key: 32-byte key → Base64: 8PQRa3rVrW2NzE/VlG5FNg==", explanation: "Feistel network, pre-whitening, 16 rounds. No practical attacks.", realWorld: "TrueCrypt, VeraCrypt, OpenPGP. AES finalist." },
+    { name: "Elliptic Curve Cryptography (ECC)", type: "Asymmetric", shortDesc: "Based on elliptic curves.", exampleDetail: "Plaintext: 'Hello', Public key (curve point) → encrypted coordinates", explanation: "ECDLP problem: 256-bit ECC ~ 3072-bit RSA. Smaller keys, faster.", realWorld: "Bitcoin (secp256k1), Signal (X25519), Apple iMessage, TLS 1.3, SSH ed25519." },
+    { name: "ChaCha20", type: "Stream cipher", shortDesc: "High-speed ARX stream.", exampleDetail: "Plaintext: 'Hello, World!', Key: 256-bit, Nonce: 12345678 → Hex: a6f745008f81c916a20dcc74eef2b2f0", explanation: "ARX (Add-Rotate-XOR). No S-boxes. 20 rounds. Faster than AES on software.", realWorld: "TLS 1.3, WireGuard VPN, Google QUIC, Discord, Android disk encryption." },
+    { name: "RC4", type: "Stream cipher", shortDesc: "Simple but vulnerable.", exampleDetail: "Plaintext: 'Hello, World!', Key: 'key12345' → Hex: bbf316e8d940af0ad3", explanation: "KSA + PRGA. Biased outputs, key reuse vulnerabilities. COMPLETELY DEPRECATED.", realWorld: "Formerly WEP (cracked), early SSL/TLS (BEAST). Never use today." },
+    { name: "Serpent", type: "Block cipher", shortDesc: "AES finalist, 32 rounds.", exampleDetail: "Plaintext: 'Hello, World!', Key: 'thisisaverysecurekey' → Hex: 7DFA6C5A9F3473A7AC8E3A2B4D4B9478", explanation: "32 rounds, conservative security margin, slower than AES.", realWorld: "VeraCrypt, security-critical applications." },
+    { name: "GOST (28147-89)", type: "Block cipher", shortDesc: "64-bit block, 256-bit key.", exampleDetail: "Plaintext: 'Hello, World!', Key: 32-byte → Hex: d4e5a74f2300a727", explanation: "32 rounds Feistel, Russian standard. Being replaced by Kuznyechik.", realWorld: "Russian banking, government communications, VPNs." },
+    { name: "IDEA", type: "Block cipher", shortDesc: "64-bit block, 128-bit key.", exampleDetail: "Plaintext: 'Hello, World!', Key: 'key12345key1234' → hex: af341abe73fddbc6", explanation: "Mixing operations: XOR, addition mod 2^16, multiplication mod (2^16+1).", realWorld: "PGP version 2.0, early SSL. Patents expired (2011-2012)." },
+    { name: "RC5", type: "Block cipher", shortDesc: "Variable params, data-dependent rotations.", exampleDetail: "Plaintext: 'Hello, World!', Key:'key12345' → hex: ef79c39e4699a16e", explanation: "Innovative data-dependent rotations. User-selectable rounds.", realWorld: "Legacy RSA products, early Bluetooth. Educational importance." },
+    { name: "Camellia", type: "Block cipher", shortDesc: "128-bit block, NESSIE selection.", exampleDetail: "Plaintext: 'Hello, World!', Key: 256-bit → hex: 8fb45d1bc14e4711", explanation: "Feistel + SPN hybrid, 18-24 rounds. Approved for Japanese government.", realWorld: "Mozilla Firefox, OpenSSL, Japanese financial systems." },
+    { name: "CAST-128 (CAST5)", type: "Block cipher", shortDesc: "64-bit block, 40-128 bit keys.", exampleDetail: "Key: 'key12345' → hex: bdf345c731f34b87", explanation: "12 or 16 rounds, resistant to differential cryptanalysis.", realWorld: "PGP, GPG, Canadian government standard." },
+    { name: "SEED", type: "Block cipher", shortDesc: "128-bit, Korean standard.", exampleDetail: "Plaintext: 'Hello, World!', Key: 'key12345key12345' → hex: 5f4c4d3b62fbf38d", explanation: "16-round Feistel, Korean national standard KS X 1005.", realWorld: "Korean banking, smart cards, digital broadcasting." },
+    { name: "Skipjack", type: "Block cipher", shortDesc: "64-bit, 80-bit key (NSA).", exampleDetail: "Key: 'key12345' → hex: 9c8fc0cd6ed8d64a", explanation: "Unbalanced Feistel, classified until 1998, now obsolete.", realWorld: "Clipper chip, Fortezza crypto cards — abandoned." },
+    { name: "MARS", type: "Block cipher", shortDesc: "AES candidate, 128-bit block.", exampleDetail: "Key: 32-byte → hex: 3b9f3732b09f8e87", explanation: "IBM design, complex mixing, slower than AES.", realWorld: "Historical — AES competition." },
+    { name: "Rabbit", type: "Stream cipher", shortDesc: "High-speed, 128-bit key.", exampleDetail: "Plaintext: 'Hello, World!', IV:12345678 → Base64: Q29mZmVL0VzdGUgZGUgQ29mZmVI", explanation: "8 state variables, 8 counters. eSTREAM portfolio.", realWorld: "Embedded real-time encryption, streaming media." },
+    { name: "HC-128", type: "Stream cipher", shortDesc: "Software efficient, 128-bit key+IV.", exampleDetail: "Key+IV: 128-bit each → produces keystream", explanation: "Two 512-word tables, very fast on modern CPUs.", realWorld: "eSTREAM portfolio, high-throughput systems." },
+    { name: "Kuznyechik", type: "Block cipher", shortDesc: "Russian GOST R 34.12-2015, 128-bit block.", exampleDetail: "Key: 256-bit → hex: 4e6f7720656e63727970746564206d657373616765", explanation: "SPN, 9 rounds, modern Russian standard.", realWorld: "Russian government classified info, banking infrastructure." },
+    { name: "TEA (Tiny Encryption Algorithm)", type: "Lightweight Block", shortDesc: "64-bit block, 128-bit key.", exampleDetail: "Key: 16-byte → hex: 9474b8e8c73bca7d", explanation: "64 rounds, XOR, addition, shift. Golden ratio constant.", realWorld: "Old PPTP, routers, constrained devices." },
+    { name: "XTEA", type: "Lightweight Block", shortDesc: "Improved TEA, stronger key schedule.", exampleDetail: "Key: 16-byte → hex: c6e0f9b902e1db27", explanation: "Better key mixing, addresses TEA weaknesses.", realWorld: "Game saves encryption, IoT devices, firmware." },
+    { name: "Speck", type: "Lightweight Block (ARX)", shortDesc: "NSA design, software-friendly.", exampleDetail: "Key: 128-bit → hex: 5f4d3c3f495d3b4f", explanation: "ARX: ROTR, ADD, XOR, ROTL. Very fast on microcontrollers.", realWorld: "IoT devices, smart meters, Linux kernel, NSA suite." },
+    { name: "Simon", type: "Lightweight Block (ARX)", shortDesc: "Hardware optimized.", exampleDetail: "Key: 128-bit → hex: 3e2f1d6a2c3b4e1f", explanation: "Only AND, XOR, rotation. ~2000 gate equivalents.", realWorld: "RFID tags, medical implants, sensor networks." },
+    { name: "Fernet", type: "Authenticated Symmetric", shortDesc: "AES-CBC + HMAC.", exampleDetail: "Key: 32-byte Base64 → ciphertext includes authentication tag", explanation: "AES-128-CBC + HMAC-SHA256 with timestamp.", realWorld: "Python Django/Flask secure cookies, API tokens." },
+    { name: "ChaCha20-Poly1305", type: "AEAD", shortDesc: "Stream cipher + MAC.", exampleDetail: "Key 256-bit, Nonce: 16-byte → Base64 tag: zH2M/ZZt9m+1tOY=", explanation: "Authenticated encryption, constant-time, no side-channels.", realWorld: "TLS 1.3 mandatory, WireGuard, Signal, WhatsApp, SSH." },
+    { name: "Cramer-Shoup", type: "Asymmetric (CCA2-secure)", shortDesc: "ElGamal variant with checks.", exampleDetail: "Group elements + hash function → Ciphertext pair", explanation: "First practical CCA2-secure scheme.", realWorld: "Academic, influenced ECIES." },
+    { name: "NTRUEncrypt", type: "Post-Quantum (Lattice)", shortDesc: "Lattice-based public-key.", exampleDetail: "Polynomial ring encryption", explanation: "Based on shortest vector problem in ideal lattices.", realWorld: "IEEE P1363.1, quantum-resistant products." },
+    { name: "SIKE", type: "Post-Quantum", shortDesc: "Supersingular isogeny KEM.", exampleDetail: "Encapsulates symmetric key via isogeny graph", explanation: "Smallest keys (~330 bytes) but slow, timing leaks.", realWorld: "NIST Round 4 finalist, Cloudflare CIRCL." },
+    { name: "Goldwasser-Micali", type: "Probabilistic Asymmetric", shortDesc: "Quadratic residuosity.", exampleDetail: "Encrypts bits individually, random non-residue.", explanation: "First probabilistic encryption, semantic security.", realWorld: "Academic, influenced homomorphic encryption." },
+    { name: "Homomorphic Encryption (Paillier/BGV)", type: "Homomorphic", shortDesc: "Computations on encrypted data.", exampleDetail: "Encrypt(5) + Encrypt(3) → Decrypt = 8", explanation: "Paillier (additive), BGV (fully homomorphic).", realWorld: "Private voting, encrypted ML, medical data analysis." },
+    { name: "Lattice-Based (LWE/Ring-LWE)", type: "Post-Quantum", shortDesc: "Learning with errors hardness.", exampleDetail: "Public matrix A, secret s → ciphertext (b, v)", explanation: "Hardness of solving linear equations with errors.", realWorld: "Kyber, Dilithium; Google post-quantum experiment." },
+    { name: "McEliece", type: "Code-based PKC", shortDesc: "Goppa codes, quantum resistant.", exampleDetail: "Generator matrix + error vector", explanation: "Binary Goppa codes, large public keys (1MB+).", realWorld: "Military, NIST Classic McEliece standard." },
+    { name: "ElGamal", type: "Asymmetric", shortDesc: "Diffie-Hellman based.", exampleDetail: "Randomized encryption, outputs (c1,c2)", explanation: "IND-CPA secure, based on DDH assumption.", realWorld: "GPG, some cryptocurrencies, basis of many PKCs." },
+    { name: "FrodoKEM", type: "Post-Quantum KEM", shortDesc: "LWE-based, conservative.", exampleDetail: "Matrix + vector encapsulation", explanation: "No algebraic shortcuts, conservative security.", realWorld: "Open Quantum Safe, security-critical research." },
+    { name: "Merkle-Hellman Knapsack", type: "Asymmetric (broken)", shortDesc: "Subset sum problem.", exampleDetail: "Superincreasing sequence disguised", explanation: "Broken by Shamir (1982).", realWorld: "Historical importance — first public-key." },
+    { name: "MQQ", type: "Multivariate PKC", shortDesc: "Quadratic equations over finite fields.", exampleDetail: "Set of quadratic polynomials", explanation: "NP-hard multivariate equations.", realWorld: "Academic post-quantum prototypes." },
+    { name: "Niederreiter", type: "Code-based", shortDesc: "Dual of McEliece, parity-check matrix.", exampleDetail: "Syndrome decoding", explanation: "Compact variant of McEliece.", realWorld: "French post-quantum research, ISO/IEC 18033." },
+    { name: "PRESENT", type: "Lightweight Block", shortDesc: "Ultra-light 64-bit block.", exampleDetail: "80/128-bit key → hex: 72c3c4d5f6e7d8c9", explanation: "SPN, 31 rounds, ~2000 gates.", realWorld: "ISO 29192-2, RFID, medical sensors, smart meters." },
+    { name: "Piccolo", type: "Lightweight Block", shortDesc: "Generalized Feistel.", exampleDetail: "80/128-bit key → hex: 1a2b3c4d5e6f7g8h", explanation: "~1000 gates, 8-bit CPU optimized.", realWorld: "Japanese NFC tags, low-end IoT." },
+    { name: "PRINCE", type: "Low-latency Block", shortDesc: "Alpha-reflection property.", exampleDetail: "64-bit block → hex: 9f8d7c6b5a4e3d2c", explanation: "Decryption = encryption with different α. 1-2 cycle latency.", realWorld: "Automotive networks, industrial control, HFT." },
+    { name: "Cocoon", type: "Lightweight Block", shortDesc: "128-bit block for IoT.", exampleDetail: "Key 128-bit → hex: e4f3d2c1b0a98765", explanation: "SPN with side-channel countermeasures.", realWorld: "Smart grid prototypes, academic lightweight crypto." },
+    { name: "CLEFIA", type: "Block cipher", shortDesc: "Sony design, 128-bit block.", exampleDetail: "Key: 256-bit → hex: e9d8c7b6a5f4e3d2", explanation: "Diffusion Switching Mechanism, 18-24 rounds.", realWorld: "PlayStation security, Blu-ray DRM, consumer electronics." },
+    { name: "XXTEA", type: "Block cipher", shortDesc: "Corrected Block TEA.", exampleDetail: "Key 128-bit → hex: 8d7c6b5a4e3d2c1b", explanation: "Variable-length block, fixes XTEA weaknesses.", realWorld: "Game cheat protection, embedded Linux." },
+    { name: "KASUMI", type: "Block cipher", shortDesc: "3GPP mobile security.", exampleDetail: "128-bit key → hex: 9f8e7d6c5b4a3928", explanation: "8-round Feistel derived from MISTY1.", realWorld: "3G/4G LTE f8/f9 encryption — billions of phones." },
+    { name: "HIGHT", type: "Lightweight Block", shortDesc: "Low-resource, 64-bit block.", exampleDetail: "Key: 128-bit → hex: 0a1b2c3d4e5f6g7h", explanation: "Only XOR, addition, rotation. ~2000 gates.", realWorld: "ISO/IEC 18033-3, Korean sensor networks, medical devices." },
+    { name: "Threefish", type: "Block cipher", shortDesc: "Skein hash family, huge block.", exampleDetail: "Block 512-bit → hex: d0e1f2a3b4c5d6e7...", explanation: "Tweakable, ARX only, no S-boxes. 72-80 rounds.", realWorld: "Skein hash (SHA-3 finalist), backup software." },
+    { name: "ZUC", type: "Stream cipher", shortDesc: "3GPP LTE standard.", exampleDetail: "Key 128-bit, IV 128-bit → keystream", explanation: "16-stage LFSR + nonlinear function F.", realWorld: "4G LTE 128-EEA3, used in billions of smartphones." },
+    { name: "Grain", type: "Stream cipher (hardware)", shortDesc: "Lightweight, LFSR-based.", exampleDetail: "Key+IV → keystream", explanation: "Two LFSRs, ~2000 gates.", realWorld: "RFID tags, keyless entry, eSTREAM hardware." },
+    { name: "Misty1", type: "Block cipher", shortDesc: "64-bit block, 128-bit key.", exampleDetail: "Key 16-byte → hex: 6a1b2c3d4e5f6g7h", explanation: "Feistel with FI/FO functions, provably secure.", realWorld: "3GPP parent of KASUMI, Japanese banking." },
+    { name: "XOR Cipher", type: "Stream cipher (trivial)", shortDesc: "Basic XOR obfuscation.", exampleDetail: "Plaintext XOR key (repeating) → Base64", explanation: "One-time pad is unbreakable if truly random key.", realWorld: "XOR obfuscation, malware, USSR Venona one-time pads." },
+    { name: "HEAAN (CKKS)", type: "Homomorphic Encryption", shortDesc: "Approximate arithmetic on encrypted reals.", exampleDetail: "Encrypt 5.3 + 3.7 → decrypt 9.0", explanation: "Approximate homomorphic for fixed-point real numbers.", realWorld: "Microsoft SEAL, IBM HElib, private ML." },
+    { name: "PGP (hybrid)", type: "Hybrid encryption", shortDesc: "RSA + symmetric (e.g., IDEA).", exampleDetail: "Generate session key, encrypt with RSA, message encrypted with symmetric cipher.", explanation: "Hybrid: asymmetric + symmetric combined.", realWorld: "GPG, ProtonMail, Edward Snowden, GitHub signing." },
+    { name: "Kyber (ML-KEM)", type: "Post-Quantum KEM", shortDesc: "LWE-based, NIST selected.", exampleDetail: "Matrix A, secret s → shared secret encapsulation.", explanation: "Module-LWE, 10x faster than RSA, NIST FIPS 203.", realWorld: "Google post-quantum experiment, Signal PQXDH, Cloudflare tunnels." }
+  ];
 
   const container = document.getElementById('algorithmsContainer');
-  let currentCards = [];
-  
   function renderCards(filterText = "") {
     const lowerFilter = filterText.toLowerCase();
     const filtered = algorithms.filter(algo => 
       algo.name.toLowerCase().includes(lowerFilter) || 
       algo.type.toLowerCase().includes(lowerFilter) ||
-      algo.shortDesc.toLowerCase().includes(lowerFilter)
+      algo.shortDesc.toLowerCase().includes(lowerFilter) ||
+      (algo.realWorld && algo.realWorld.toLowerCase().includes(lowerFilter))
     );
-    
     container.innerHTML = "";
     if(filtered.length === 0) {
-      container.innerHTML = `<div class="col-12 text-center py-5"><i class="bi bi-emoji-frown fs-1"></i><h4 class="mt-3">No matching algorithm found</h4><p>Try different keyword</p></div>`;
+      container.innerHTML = `<div class="col-12 text-center py-5"><i class="bi bi-emoji-frown fs-1"></i><h4 class="mt-3">No matching algorithm found</h4><p>Try 'quantum', 'lightweight', 'stream', 'post-quantum'</p></div>`;
       return;
     }
-    
     filtered.forEach((algo, idx) => {
       const col = document.createElement('div');
       col.className = 'col-12 col-sm-6 col-md-4 col-lg-3';
       col.innerHTML = `
-        <div class="algorithm-card p-3" data-algo-index="${idx}" data-algo-name="${algo.name}">
+        <div class="algorithm-card p-3" data-algo-name="${algo.name.replace(/"/g, '&quot;')}">
           <div class="d-flex justify-content-between align-items-start mb-2">
             <span class="algo-type">${algo.type}</span>
             <i class="bi bi-lock-fill text-primary" style="font-size: 1.2rem;"></i>
           </div>
           <h5 class="fw-bold mt-2">${algo.name}</h5>
           <p class="text-muted small mb-2">${algo.shortDesc}</p>
-          <div class="mt-2">
-            <span class="card-badge"><i class="bi bi-info-circle-fill me-1"></i>Click for demo</span>
+          <div class="mt-2 d-flex gap-1 flex-wrap">
+            <span class="card-badge"><i class="bi bi-info-circle-fill me-1"></i>Details</span>
+            <span class="card-badge real"><i class="bi bi-globe2 me-1"></i>Real-world</span>
           </div>
           <hr class="my-2">
-          <div class="small text-secondary fw-mono">
-            <i class="bi bi-code-slash"></i> example snippet
-          </div>
+          <div class="small text-secondary"><i class="bi bi-code-slash"></i> click to explore</div>
         </div>
       `;
       container.appendChild(col);
     });
-    
-    // add click listeners to newly created cards
     document.querySelectorAll('.algorithm-card').forEach(card => {
-      card.addEventListener('click', (e) => {
-        const idxAttr = card.getAttribute('data-algo-index');
-        if(idxAttr !== null) {
-          const originalIdx = parseInt(idxAttr);
-          const algoName = card.getAttribute('data-algo-name');
-          const realAlgo = algorithms.find(a => a.name === algoName);
-          if(realAlgo) showModal(realAlgo);
-        }
+      card.addEventListener('click', () => {
+        const nameAttr = card.getAttribute('data-algo-name');
+        const realAlgo = algorithms.find(a => a.name === nameAttr);
+        if(realAlgo) showModal(realAlgo);
       });
     });
   }
 
   function showModal(algo) {
-    const modalTitleElem = document.getElementById('modalTitle');
+    document.getElementById('modalTitle').innerText = algo.name;
     const modalBody = document.getElementById('modalBodyContent');
-    modalTitleElem.innerText = algo.name;
-    
     modalBody.innerHTML = `
-      <div class="mb-3">
+      <div class="mb-3 d-flex justify-content-between align-items-center flex-wrap">
         <span class="badge bg-primary fs-6 p-2">${algo.type}</span>
-        <p class="mt-3 lead">${algo.shortDesc}</p>
+        <span class="level-badge"><i class="bi bi-graph-up"></i> ${algo.type.includes('Classical')?'Beginner':algo.type.includes('Quantum')?'Expert':'Intermediate'}+</span>
       </div>
+      <p class="lead">${algo.shortDesc}</p>
       <div class="example-box mb-4">
-        <div class="fw-bold mb-2"><i class="bi bi-diagram-3"></i> Practical Example</div>
-        <pre class="mb-0" style="white-space: pre-wrap; font-family: monospace; background: transparent;">${algo.exampleDetail}</pre>
+        <div class="fw-bold mb-2">📌 Practical Example</div>
+        <pre>${algo.exampleDetail}</pre>
       </div>
       <div class="mb-3">
-        <h6><i class="bi bi-lightbulb"></i> Technical Explanation</h6>
+        <h6>🧠 Technical Explanation</h6>
         <p>${algo.explanation}</p>
       </div>
       <div class="mb-3">
-        <h6><i class="bi bi-globe2"></i> Real-World Usage</h6>
-        <div class="alert alert-success" role="alert" style="background: #e8f5e9; border-left: 4px solid #2e7d32;">
-          <i class="bi bi-check-circle-fill text-success me-2"></i>
-          ${algo.realWorld || "Widely used in modern security systems and cryptographic protocols."}
+        <h6>🌍 Real-World Usage</h6>
+        <div class="alert alert-success" style="background: #e8f5e9; border-left: 4px solid #2e7d32;">
+          <i class="bi bi-check-circle-fill text-success me-2"></i> ${algo.realWorld || "Widely used in modern security systems."}
         </div>
       </div>
       <div class="alert alert-secondary mt-2" role="alert">
-        <i class="bi bi-shield-shaded"></i> <strong>Did you know?</strong> ${algo.name} ${
-          algo.type.includes("Asymmetric") ? "uses key pairs (public/private)." : 
-          algo.type.includes("Symmetric") ? "same key for encryption/decryption." :
-          "offers unique cryptographic properties."
-        } Modern systems often combine several methods.
+        <i class="bi bi-stars"></i> <strong> Did you know?</strong> ${algo.name} ${algo.type.includes("Asymmetric") ? "uses two different keys — one public, one private." : algo.type.includes("Symmetric") ? "uses the same secret key for locking and unlocking." : "represents an advanced cryptographic paradigm."} ${algo.name === "AES" ? "It's the only cipher publicly approved by NSA for top secret documents." : algo.name === "RSA" ? "Named after Rivest, Shamir, Adleman — its inventors." : algo.name === "Kyber" ? "Selected by NIST as first post-quantum standard (ML-KEM)." : ""}
       </div>
     `;
-    
-    const modal = new bootstrap.Modal(document.getElementById('algoModal'));
-    modal.show();
+    new bootstrap.Modal(document.getElementById('algoModal')).show();
   }
-  
-  const searchInput = document.getElementById('searchAlgo');
-  searchInput.addEventListener('input', (e) => {
-    renderCards(e.target.value);
-  });
-  
-  renderCards("");
-  
-  const originalRender = renderCards;
-  window.renderCards = renderCards;
-</script>
 
+  document.getElementById('searchAlgo').addEventListener('input', (e) => renderCards(e.target.value));
+  renderCards("");
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
