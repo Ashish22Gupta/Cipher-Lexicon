@@ -1,0 +1,127 @@
+* {
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background: #f0f4f8;
+  scroll-behavior: smooth;
+}
+
+.hero {
+  background: linear-gradient(135deg, #0a1c2a 0%, #0d3b4f 100%);
+  color: white;
+  padding: 2rem 1rem 3rem;
+  border-radius: 0 0 2.5rem 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.algorithm-card {
+  transition: all 0.25s ease;
+  border: none;
+  border-radius: 1.25rem;
+  background: white;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.algorithm-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.2);
+}
+
+.card-badge {
+  background: #eef2ff;
+  color: #0a58ca;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 30px;
+  display: inline-block;
+}
+
+.card-badge.real {
+  background: #d1e7dd;
+  color: #146c43;
+}
+
+.algo-type {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #2c7da0;
+}
+
+.modal-header-crypto {
+  background: #0a2f44;
+  color: white;
+  border-bottom: 3px solid #ffc107;
+}
+
+.example-box {
+  background: #f8f9fc;
+  border-left: 5px solid #0d6efd;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  font-family: 'SF Mono', monospace;
+  font-size: 0.85rem;
+}
+
+.search-filter {
+  max-width: 420px;
+  margin: 0 auto 1.5rem auto;
+}
+
+.badge-category {
+  background: #1e3a5f;
+  color: white;
+  font-size: 0.7rem;
+  padding: 0.3rem 0.9rem;
+  border-radius: 30px;
+}
+
+.footer-note {
+  background: #e9ecef;
+  border-radius: 2rem;
+  padding: 1.5rem;
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.btn-outline-light-custom {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 40px;
+}
+
+.glossary-term {
+  border-bottom: 1px dashed #6c757d;
+  cursor: help;
+}
+
+.level-badge {
+  font-size: 0.7rem;
+  background: #ffc107;
+  color: #000;
+  border-radius: 20px;
+  padding: 2px 8px;
+}
+
+.comparison-table td {
+  padding: 0.5rem;
+  vertical-align: middle;
+}
+
+.btn-close:focus {
+  box-shadow: none;
+}
+
+pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+  background: transparent;
+  margin: 0;
+  font-size: 0.8rem;
+}
